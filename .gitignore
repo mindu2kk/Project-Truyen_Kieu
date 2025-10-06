@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+outputs/
+data/raw/*
+data/interim/*
+data/rag_chunks/*
+data/sft_json/*
+data/eval/*
+!data/**/.gitkeep

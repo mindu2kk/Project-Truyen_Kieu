@@ -1,0 +1,5 @@
+db: kieu_bot
+collection: chunks
+index_name: default
+dimensions: 764   # đổi theo embedding bạn dùng
+similarity: cosine

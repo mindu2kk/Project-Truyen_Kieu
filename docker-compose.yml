@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  kieu-bot-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kieu-bot-ui
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      # Có thể override (nếu không muốn dùng .env)
+      HF_HOME: /cache/hf_home
+      TRANSFORMERS_CACHE: /cache/transformers
+      RAG_CACHE_DIR: /cache/rag_cache
+    volumes:
+      # Cache model / câu trả lời để lần sau nhanh hơn
+      - hf_home:/cache/hf_home
+      - hf_trans:/cache/transformers
+      - rag_cache:/cache/rag_cache
+      # (tuỳ chọn) mount dữ liệu nếu bạn muốn thay đổi ngoài container
+      - ./data:/app/data
+    restart: unless-stopped
+
+volumes:
+  hf_home:
+  hf_trans:
+  rag_cache:
